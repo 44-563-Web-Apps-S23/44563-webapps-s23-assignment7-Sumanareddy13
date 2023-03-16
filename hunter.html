@@ -11,13 +11,13 @@
                 text-align: center;
             }
             #bush.jpges {
-              background-color: lightblue;
+              background-color:peachpuff;
               color: black;
               margin-bottom: 5px;
               font-size: 20px;
             }
             #cat{
-                background-color: peachpuff;
+                background-color: plum;
               color: red;
               margin-bottom: 5px;
                         font-size: 20px;     
@@ -51,11 +51,12 @@
     </head>
     <body>
         <h1 >Find the mouse by Sumanasri Paila</h1>
-        <div id ="cat">Click on the bush.jpges to search for the mouse, beware the cat</div>
-        <div id ="bush.jpges">Number of bush.jpges checked is zero</div>
+        <div id ="cat">Click on the bush to search for the mouse, beware of the cat</div>
+        <div id ="bushes">Number of bushes checked is zero</div>
         <div id = "penalty">Penalty is zero</div>
-        <div id ="c">Click for help</div>
+        <div id ="c" onclick="help()">Click for help</div>
         <div id ="help">Help report</div>
+        <button class="btn btn-primary" onclick="bonus()">Bonus</button>
         <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-2" style="background-color: whitesmoke;">
@@ -65,7 +66,7 @@
                     <img src="bush.jpg" height=100 width=100 id="bush2" onclick="check(1)" class="float-start" alt="bush">
                   </div>
                   <div class="col-sm-2" style="background-color:whitesmoke;">
-                    <img src="bush.jpg" height=100 width=100 id="bush3" onclick="check(2)" class="float-start" alt="bush">
+                    <img src="bush.jpg" height=100 width=100 id="bush" onclick="check(2)" class="float-start" alt="bush">
                   </div>
                   <div class="col-sm-2" style="background-color:whitesmoke;">
                     <img src="bush.jpg" height=100 width=100 id="bush4" onclick="check(3)" class="float-start" alt="bush">
@@ -139,30 +140,30 @@
         </div>
         </div>
         <script>
-            ids = new Array("Bush1", "Bush2", "Bush3", "Bush4", "Bush5", "Bush6", "Bush7", "Bush8", "Bush9", "Bush10", "Bush11",
-               "Bush12", "Bush13", "Bush14", "Bush15", "Bush16", "Bush17", "Bush18", "Bush19", "Bush20", "Bush21", "Bush22", 
-               "Bush23", "Bush24", "Bush25");
+            ids = new Array("bush1", "bush2", "bush3", "bush4", "bush5", "bush6", "bush7", "bush8", "bush9", "bush10", "bush11",
+               "bush12", "bush13", "bush14", "bush15", "bush16", "bush17", "bush18", "bush19", "bush20", "bush21", "bush22", 
+               "bush23", "bush24", "bush25");
             checkCount = 0;
             penalty = 0; 
             lastCheck = 0;
-            mouseLocation = 13;
+            mouseLocation = 12;
             catLocation =21;
             gameOver = false;
             function check(position){
                 if(!gameOver)
                 {
                  if(position==mouseLocation){
-                    document.getElementById(ids[position]).src="Mouse.jpg";
+                    document.getElementById(ids[position]).src="mouse.jpg";
                     gameOver = true;
                     penalty -= 3;
                 }
                 else if(position==catLocation){
-                    document.getElementById(ids[position]).src="Tiger.jpg";
+                    document.getElementById(ids[position]).src="tigercat.jpg";
                     gameOver = true;
                     penalty += 4;
                 }
                 else{
-                    document.getElementById(ids[position]).src="Grass.jpg";
+                    document.getElementById(ids[position]).src="grass.jpg";
                 }
                 checkCount++
                 penalty++
@@ -201,7 +202,7 @@
             }
             let rand1, rand2, rand3;
             function bonus(){
-                r1=Math.floor(Math.random()*24);
+                rand1=Math.floor(Math.random()*24);
                 
                 console.log(rand1);
                 rand2=Math.floor(Math.random()*24);
@@ -213,18 +214,18 @@
                 mouseLocation=rand2;
                 bonus=0;
                 penal=0;
-                let last_col=lastCheck%6;
-                let last_row=Math.floor(lastCheck/6);
-                let cat_col=catLocation%6;
-                let cat_row=Math.floor(catLocation/6);
-                let col_diff=Math.abs(lastcol-catcol);
-                let row_diff=(Math.abs(lastrow-catrow));
-                let rat_col=mouseLocation%6;
-                let rat_row=Math.floor(mouseLocation/6);
-                let rat_col_diff=Math.abs(last_col-rat_col);
-                let rat_row_diff=(Math.abs(last_row-rat_row));
+                let lastcol=lastCheck%6;
+                let lastrow=Math.floor(lastCheck/6);
+                let catcol=catLocation%6;
+                let catrow=Math.floor(catLocation/6);
+                let coldiff=Math.abs(lastcol-catcol);
+                let rowdiff=(Math.abs(lastrow-catrow));
+                let ratcol=mouseLocation%6;
+                let ratrow=Math.floor(mouseLocation/6);
+                let ratcoldiff=Math.abs(lastcol-ratcol);
+                let ratrowdiff=(Math.abs(lastrow-ratrow));
                 console.log(row_diff,col_diff)
-                if(rat_row_diff<=1 && rat_col_diff<=1)
+                if(ratrowdiff<=1 && rat_col_diff<=1)
                 {
                     document.getElementById("help").innerHTML="squeek"
                     penal+=2;
